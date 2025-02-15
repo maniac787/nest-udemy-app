@@ -19,3 +19,14 @@ Content-Type: application/json
   "description": "mundo",
   "src": "content"
 }
+
+###
+POST localhost:3000/v1/courses
+Content-Type: application/json
+
+{
+  "title": "Holasdsdf sfsd fsd fsdfs dfsdfsdf",
+  "price": 300,
+  "description": "mundo",
+  "coverImage": "http://ww.image.com/index.png"
+}
