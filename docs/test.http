@@ -34,3 +34,20 @@ Content-Type: application/json
 ###
 GET localhost:3000/v1/courses/El mejor libro del mundo
 Content-Type: application/json
+
+###
+# curl --location 'http://localhost:3000/v1/videos/upload'
+#--header 'accept: */*'
+#--form 'image=@"/home/roberto/Pictures/Screenshots/Screenshot from 2025-02-05 16-57-22.png"'
+POST http://localhost:3000/v1/videos/upload
+accept: */*
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="image"; filename="Screenshot from 2025-02-05 16-57-22.png""
+
+< /home/roberto/Pictures/Screenshots/Screenshot from 2025-02-05 16-57-22.png
+--WebAppBoundary--
+
+###
+
