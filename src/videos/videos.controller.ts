@@ -6,15 +6,19 @@ import {
   Param,
   Patch,
   Post,
+  UseInterceptors,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
 import { VideosService } from './videos.service';
 import { CreateVideoDto } from './dto/create-video.dto';
 import { UpdateVideoDto } from './dto/update-video.dto';
+import { LoggerInterceptor } from '../utils/logger/logger.interceptor';
 
 @Controller('videos')
 @UsePipes(new ValidationPipe())
+// Interceptor
+@UseInterceptors(LoggerInterceptor)
 export class VideosController {
   constructor(private readonly videosService: VideosService) {}
 

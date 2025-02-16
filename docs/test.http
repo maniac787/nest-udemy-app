@@ -4,14 +4,14 @@ GET https://examples.http-client.intellij.net/get
 
 ###
 
-GET http://localhost:3000/videos?id=1
+GET http://localhost:3000/v1/videos/este-es-un-parametro
 Accept: application/json
 User-Agent: IntelliJ HTTP Client/WebStorm 2024.3.2.1
 Accept-Encoding: br, deflate, gzip, x-gzip
 
 ###
 
-POST localhost:3000/videos
+POST localhost:3000/v1/videos
 Content-Type: application/json
 
 {
