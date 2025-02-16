@@ -6,6 +6,7 @@ import {
   HttpCode,
   HttpStatus,
   Param,
+  ParseIntPipe,
   Patch,
   Post,
 } from '@nestjs/common';
@@ -13,6 +14,7 @@ import { CoursesService } from './courses.service';
 import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
 import { ApiBearerAuth } from '@nestjs/swagger';
+import { SlugPipe } from './pipes/slug/slug.pipe';
 
 @Controller('courses')
 export class CoursesController {
@@ -30,8 +32,23 @@ export class CoursesController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(
+    @Param(
+      'id',
+      new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
+    )
+    id: number,
+  ) {
     return this.coursesService.findOne(+id);
+  }
+
+  @Get(':title')
+  findOneTitle(
+    @Param('title', new SlugPipe())
+    title: string,
+  ) {
+    console.log('__TILE__', title);
+    return this.coursesService.findOne(1);
   }
 
   @Patch(':id')

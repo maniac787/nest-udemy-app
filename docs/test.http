@@ -30,3 +30,7 @@ Content-Type: application/json
   "description": "mundo",
   "coverImage": "http://ww.image.com/index.png"
 }
+
+###
+GET localhost:3000/v1/courses/El mejor libro del mundo
+Content-Type: application/json
