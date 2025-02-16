@@ -1,16 +1,13 @@
 import { Column, Entity, ObjectId, ObjectIdColumn } from 'typeorm';
 
 @Entity()
-export class Video {
+export class Course {
   @ObjectIdColumn()
   id: ObjectId;
 
   @Column()
-  title: string;
+  name: string;
 
   @Column()
-  description: string;
-
-  @Column()
-  src: string;
+  email: string;
 }

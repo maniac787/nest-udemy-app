@@ -15,7 +15,7 @@ POST localhost:3000/v1/videos
 Content-Type: application/json
 
 {
-  "title": "Holasdsdf sfsd fsd fsdfs dfsdfsdf",
+  "title": "Holasdsdf",
   "description": "mundo",
   "src": "content"
 }
