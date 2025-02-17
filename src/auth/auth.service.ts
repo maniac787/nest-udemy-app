@@ -5,10 +5,12 @@ import { User } from './entities/user.entity';
 import { RegisterAuthDto } from './dto/register-auth.dto';
 import { compareHash, generateHash } from './utils/handleBcrypt';
 import { LoginAuthDto } from './dto/login-auth.dto';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
   constructor(
+    private readonly jwtService: JwtService,
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
   ) {}
@@ -33,6 +35,16 @@ export class AuthService {
     }
 
     delete userExists.password;
-    return userExists;
+    const payload = {
+      id: userExists.id,
+    };
+
+    const token = await this.jwtService.sign(payload);
+
+    const data = {
+      token,
+      user: userExists,
+    };
+    return data;
   }
 }
