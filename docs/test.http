@@ -51,3 +51,21 @@ Content-Disposition: form-data; name="image"; filename="Screenshot from 2025-02-
 
 ###
 
+###
+POST localhost:3000/v1/auth/register
+Content-Type: application/json
+
+{
+  "email": "maniac787@gmail.com",
+  "name": "maniac787",
+  "password": "MiCLave123"
+}
+
+###
+POST localhost:3000/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "maniac787@gmail.com",
+  "password": "MiCLave123"
+}
