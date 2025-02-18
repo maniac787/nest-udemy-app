@@ -8,9 +8,10 @@ export const typeOrmConfigAsync = (
   authSource: configService.get<string>('DATABASE_AUTH_SOURCE'),
   type: 'mongodb', // Tipo de base de datos
   url: configService.get<string>('DATABASE_URL'), // URL de conexión
-  entities: [__dirname + '/**/*.entity{.ts,.js}'], // Rutas de las entidades
+  // entities: [__dirname + '/**/*.entity{.ts,.js}'], // Rutas de las entidades
   synchronize: true, // Sincronizar esquemas (solo para desarrollo)
   logging: true, // Habilitar logs
   logger: new MyCustomLogger(), // Logger personalizado
+  autoLoadEntities: true,
   // useUnifiedTopology: true, // Opción recomendada para MongoDB
 });
