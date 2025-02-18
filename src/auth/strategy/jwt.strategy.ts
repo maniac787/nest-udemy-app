@@ -4,7 +4,8 @@ import { Injectable } from '@nestjs/common';
 import * as process from 'node:process';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from '../entities/user.entity';
-import { ObjectId, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
+import { ObjectId } from 'mongodb';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -19,11 +20,11 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  async validate(payload: { id: ObjectId }) {
+  async validate(payload: { id: string }) {
     const objectId = payload.id;
     console.log('__USER ID__', objectId);
-    const userExists = await this.userRepository.findOne({
-      where: { id: objectId },
+    const userExists = await this.userRepository.findOneBy({
+      id: new ObjectId(objectId),
     });
 
     console.log('userExists', userExists);
