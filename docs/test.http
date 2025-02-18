@@ -21,7 +21,17 @@ Content-Type: application/json
 }
 
 ###
+# curl --location 'localhost:3000/v1/courses'
+#--header 'Content-Type: application/json'
+#--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjI5YzMyYjNmN2U3YzRmMDljN2Q5OSIsImlhdCI6MTczOTgyODQyMSwiZXhwIjoxNzM5OTE0ODIxfQ.614MDRaWsD1O1-e5WbKOdMztaWsxvvHc0hg-I5I35LY'
+#--data '{
+#  "title": "Holasdsdf sfsd fsd fsdfs dfsdfsdf",
+#  "price": 300,
+#  "description": "mundo",
+#  "coverImage": "http://ww.image.com/index.png"
+#}'
 POST localhost:3000/v1/courses
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjI5YzMyYjNmN2U3YzRmMDljN2Q5OSIsImlhdCI6MTczOTgyODQyMSwiZXhwIjoxNzM5OTE0ODIxfQ.614MDRaWsD1O1-e5WbKOdMztaWsxvvHc0hg-I5I35LY
 Content-Type: application/json
 
 {
@@ -30,6 +40,10 @@ Content-Type: application/json
   "description": "mundo",
   "coverImage": "http://ww.image.com/index.png"
 }
+
+###
+
+
 
 ###
 GET localhost:3000/v1/courses/El mejor libro del mundo
@@ -54,7 +68,6 @@ Content-Disposition: form-data; name="image"; filename="Screenshot from 2025-02-
 ###
 POST localhost:3000/v1/auth/register
 Content-Type: application/json
-
 {
   "email": "maniac787@gmail.com",
   "name": "maniac787",

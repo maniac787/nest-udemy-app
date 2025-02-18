@@ -1,8 +1,9 @@
-import { Column, Entity, ObjectId, ObjectIdColumn } from 'typeorm';
+import { Column, Entity, ObjectIdColumn } from 'typeorm';
+import { ObjectId } from 'mongodb';
 
-@Entity()
+@Entity('user')
 export class User {
-  @ObjectIdColumn()
+  @ObjectIdColumn({ name: '_id' }) // Mapea "id" a "_id" en la base de datos
   id: ObjectId;
 
   @Column()

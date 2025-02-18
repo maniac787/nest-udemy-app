@@ -9,20 +9,25 @@ import {
   ParseIntPipe,
   Patch,
   Post,
+  Req,
+  UseGuards,
 } from '@nestjs/common';
 import { CoursesService } from './courses.service';
 import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
 import { ApiBearerAuth } from '@nestjs/swagger';
 import { SlugPipe } from './pipes/slug/slug.pipe';
+import { JwtGuardsGuard } from '../guards/jwt-guards/jwt-guards.guard';
 
 @Controller('courses')
+@UseGuards(JwtGuardsGuard)
 export class CoursesController {
   constructor(private readonly coursesService: CoursesService) {}
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
-  create(@Body() createCourseDto: CreateCourseDto) {
+  create(@Req() req, @Body() createCourseDto: CreateCourseDto) {
+    console.log('__USER__', req.user);
     return this.coursesService.create(createCourseDto);
   }
 
