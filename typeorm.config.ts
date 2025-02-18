@@ -1,16 +1,16 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { ConfigService } from '@nestjs/config';
 import { MyCustomLogger } from './src/utils/custom.logger';
 
-const typeOrmConfig: TypeOrmModuleOptions = {
-  authSource: 'admin',
+export const typeOrmConfigAsync = (
+  configService: ConfigService,
+): TypeOrmModuleOptions => ({
+  authSource: configService.get<string>('DATABASE_AUTH_SOURCE'),
   type: 'mongodb', // Tipo de base de datos
-  url: 'mongodb://rbt_dba:rbt_pass@45.79.26.15:27017/nest_udemy_db', // URL de conexión,
+  url: configService.get<string>('DATABASE_URL'), // URL de conexión
   entities: [__dirname + '/**/*.entity{.ts,.js}'], // Rutas de las entidades
   synchronize: true, // Sincronizar esquemas (solo para desarrollo)
-  // logging: true, // Habilitar logs
-  logging: true, // Solo logs de consultas y errores
-  logger: new MyCustomLogger(),
+  logging: true, // Habilitar logs
+  logger: new MyCustomLogger(), // Logger personalizado
   // useUnifiedTopology: true, // Opción recomendada para MongoDB
-};
-
-export default typeOrmConfig;
+});
