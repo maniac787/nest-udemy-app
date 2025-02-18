@@ -11,6 +11,8 @@ import { join } from 'path';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './auth/entities/user.entity';
 import { typeOrmConfigAsync } from '../typeorm.config';
+import { EventMailModule } from './event-mail/event-mail.module';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 
 @Module({
   imports: [
@@ -28,6 +30,8 @@ import { typeOrmConfigAsync } from '../typeorm.config';
       useFactory: typeOrmConfigAsync, // Usar la configuración asíncrona
     }),
     TypeOrmModule.forFeature([User]),
+    EventEmitterModule.forRoot(), //Manejo de eventos
+    EventMailModule,
   ],
   controllers: [AppController],
   providers: [AppService],

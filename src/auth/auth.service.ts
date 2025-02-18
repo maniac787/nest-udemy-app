@@ -6,6 +6,7 @@ import { RegisterAuthDto } from './dto/register-auth.dto';
 import { compareHash, generateHash } from './utils/handleBcrypt';
 import { LoginAuthDto } from './dto/login-auth.dto';
 import { JwtService } from '@nestjs/jwt';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 
 @Injectable()
 export class AuthService {
@@ -13,12 +14,15 @@ export class AuthService {
     private readonly jwtService: JwtService,
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
+    private readonly eventEmitter: EventEmitter2,
   ) {}
 
   async register(registerBody: RegisterAuthDto) {
     const { password, ...user } = registerBody;
     const userParse = { ...user, password: await generateHash(password) };
-    return this.userRepository.save(userParse);
+    const newUser = await this.userRepository.save(userParse);
+    this.eventEmitter.emit('user.created', newUser);
+    return newUser;
   }
 
   async login(loginBody: LoginAuthDto) {
