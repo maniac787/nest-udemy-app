@@ -31,13 +31,13 @@ Content-Type: application/json
 #  "coverImage": "http://ww.image.com/index.png"
 #}'
 POST localhost:3000/v1/courses
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjI5YzMyYjNmN2U3YzRmMDljN2Q5OSIsImlhdCI6MTczOTgyODQyMSwiZXhwIjoxNzM5OTE0ODIxfQ.614MDRaWsD1O1-e5WbKOdMztaWsxvvHc0hg-I5I35LY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjI5YzMyYjNmN2U3YzRmMDljN2Q5OSIsImlhdCI6MTczOTkxODY3MSwiZXhwIjoxNzQwMDA1MDcxfQ.22cAzzm66F_X2K0Kuh-0bCSWfalhwShdNnabPPU_b94
 Content-Type: application/json
 
 {
-  "title": "Holasdsdf sfsd fsd fsdfs dfsdfsdf",
+  "title": "Curso Udemy",
   "price": 300,
-  "description": "mundo",
+  "description": "Buen tutorial",
   "coverImage": "http://ww.image.com/index.png"
 }
 
@@ -68,10 +68,12 @@ Content-Disposition: form-data; name="image"; filename="Screenshot from 2025-02-
 ###
 POST localhost:3000/v1/auth/register
 Content-Type: application/json
+
 {
-  "email": "maniac787@gmail.com",
-  "name": "maniac787",
-  "password": "MiCLave123"
+  "email": "test@gmail.com",
+  "name": "test",
+  "password": "MiCLave123",
+  "roles": ["user"]
 }
 
 ###
