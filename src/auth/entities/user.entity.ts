@@ -1,9 +1,9 @@
 import { Column, Entity, ObjectId, ObjectIdColumn } from 'typeorm';
 
-@Entity()
+@Entity('user')
 export class User {
-  @ObjectIdColumn()
-  id: ObjectId;
+  @ObjectIdColumn() // Mapea "id" a "_id" en la base de datos
+  _id: ObjectId;
 
   @Column()
   email: string;
