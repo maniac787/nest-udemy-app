@@ -24,10 +24,10 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     const objectId = payload.id;
     console.log('__USER ID__', objectId);
     const userExists = await this.userRepository.findOneBy({
-      id: new ObjectId(objectId),
+      _id: new ObjectId(objectId),
     });
 
     console.log('userExists', userExists);
-    return payload;
+    return userExists;
   }
 }

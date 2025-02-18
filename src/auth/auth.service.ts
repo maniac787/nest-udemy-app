@@ -36,7 +36,7 @@ export class AuthService {
 
     delete userExists.password;
     const payload = {
-      id: userExists.id,
+      id: userExists._id,
     };
 
     const token = await this.jwtService.sign(payload);
