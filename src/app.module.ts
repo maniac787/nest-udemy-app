@@ -13,6 +13,7 @@ import { User } from './auth/entities/user.entity';
 import { typeOrmConfigAsync } from '../typeorm.config';
 import { EventMailModule } from './event-mail/event-mail.module';
 import { EventEmitterModule } from '@nestjs/event-emitter';
+import { MailModule } from './mail/mail.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { EventEmitterModule } from '@nestjs/event-emitter';
     TypeOrmModule.forFeature([User]),
     EventEmitterModule.forRoot(), //Manejo de eventos
     EventMailModule,
+    MailModule,
   ],
   controllers: [AppController],
   providers: [AppService],
