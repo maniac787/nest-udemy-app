@@ -70,8 +70,8 @@ POST localhost:3000/v1/auth/register
 Content-Type: application/json
 
 {
-  "email": "test2@gmail.com",
-  "name": "test2",
+  "email": "maniac787@gmail.com",
+  "name": "Roberto Chasipanta",
   "password": "MiCLave123",
   "roles": ["user"]
 }
