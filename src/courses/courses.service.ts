@@ -1,11 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Course } from './entities/course.entity';
 import { Repository } from 'typeorm';
 import { ObjectId } from 'mongodb';
-import { CourseMapper } from './mapper/user.mapper';
 
 @Injectable()
 export class CoursesService {
@@ -37,10 +36,27 @@ export class CoursesService {
     });
   }
 
-  update(id: string, updateCourseDto: Partial<UpdateCourseDto>) {
+  async update(id: string, updateCourseDto: Partial<UpdateCourseDto>) {
+    const course = await this.courseRepository.findOne({
+      where: { _id: new ObjectId(id) },
+    });
+
+    if (!course) {
+      throw new NotFoundException('Curso no encontrado');
+    }
+
+    // Fusionar los valores nuevos con los existentes
+    Object.assign(course, updateCourseDto);
+
+    return this.courseRepository.update(
+      { _id: new ObjectId(id) },
+      updateCourseDto,
+    );
+    /*
     const course = CourseMapper.toEntity(updateCourseDto);
     console.log(course);
-    return this.courseRepository.update(new ObjectId(id), {});
+    // @ts-ignore
+    return this.courseRepository.update(new ObjectId(id), course);*/
   }
 
   remove(id: number) {
