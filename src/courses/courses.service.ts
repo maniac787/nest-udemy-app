@@ -4,6 +4,8 @@ import { UpdateCourseDto } from './dto/update-course.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Course } from './entities/course.entity';
 import { Repository } from 'typeorm';
+import { ObjectId } from 'mongodb';
+import { CourseMapper } from './mapper/user.mapper';
 
 @Injectable()
 export class CoursesService {
@@ -25,15 +27,20 @@ export class CoursesService {
   }
 
   findAll() {
-    return `This action returns all courses`;
+    return this.courseRepository.find({});
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} course`;
+  findOne(id: string) {
+    const inputId = new ObjectId(id);
+    return this.courseRepository.findOne({
+      where: { _id: inputId },
+    });
   }
 
-  update(id: number, updateCourseDto: UpdateCourseDto) {
-    return `This action updates a #${id} course`;
+  update(id: string, updateCourseDto: Partial<UpdateCourseDto>) {
+    const course = CourseMapper.toEntity(updateCourseDto);
+    console.log(course);
+    return this.courseRepository.update(new ObjectId(id), {});
   }
 
   remove(id: number) {

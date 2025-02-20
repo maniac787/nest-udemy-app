@@ -6,9 +6,8 @@ import {
   HttpCode,
   HttpStatus,
   Param,
-  ParseIntPipe,
-  Patch,
   Post,
+  Put,
   Req,
   UseGuards,
 } from '@nestjs/common';
@@ -35,19 +34,21 @@ export class CoursesController {
   }
 
   @Get()
+  @Rol(['admin'])
   findAll() {
     return this.coursesService.findAll();
   }
 
   @Get(':id')
+  @Rol(['admin'])
   findOne(
     @Param(
       'id',
-      new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
+      // new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
     )
-    id: number,
+    id: string,
   ) {
-    return this.coursesService.findOne(+id);
+    return this.coursesService.findOne(id);
   }
 
   @Get(':title')
@@ -56,17 +57,19 @@ export class CoursesController {
     title: string,
   ) {
     console.log('__TILE__', title);
-    return this.coursesService.findOne(1);
+    return this.coursesService.findOne(title);
   }
 
-  @Patch(':id')
+  @Put(':id')
   @ApiBearerAuth()
+  @Rol(['admin'])
   update(@Param('id') id: string, @Body() updateCourseDto: UpdateCourseDto) {
-    return this.coursesService.update(+id, updateCourseDto);
+    return this.coursesService.update(id, updateCourseDto);
   }
 
   @Delete(':id')
   @ApiBearerAuth()
+  @Rol(['admin'])
   remove(@Param('id') id: string) {
     return this.coursesService.remove(+id);
   }
