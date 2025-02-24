@@ -42,11 +42,15 @@ Content-Type: application/json
 }
 
 ###
-
-
+GET localhost:3000/v1/courses/67b41b9dbfa5b599c0cbdbb0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjYzYTY4ZDA5MzIzOTEzNjQ1YmE2MiIsImlhdCI6MTczOTk5NTg1MSwiZXhwIjoxNzQwMDgyMjUxfQ.T5I8IUl-7tUqN5szRFDEm4C4Qym8QbLO2y2ray_RD7w
+Content-Type: application/json
 
 ###
-GET localhost:3000/v1/courses/El mejor libro del mundo
+
+###
+GET localhost:3000/v1/courses/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjYzYTY4ZDA5MzIzOTEzNjQ1YmE2MiIsImlhdCI6MTczOTk5NTg1MSwiZXhwIjoxNzQwMDgyMjUxfQ.T5I8IUl-7tUqN5szRFDEm4C4Qym8QbLO2y2ray_RD7w
 Content-Type: application/json
 
 ###
